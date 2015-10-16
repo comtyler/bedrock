@@ -1,0 +1,34 @@
+body, html {
+	height: 100%;
+}
+
+*, body {
+	text-rendering:optimizeLegibility;
+}
+
+html {
+	font-size: 14px;
+	-webkit-font-smoothing: antialiased;
+	color: #000000;
+	font-family: 'Helvetica', arial, sans-serif;
+	line-height: 0.75;
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+
+*,*:before,*:after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+img {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.container {
+	@include clearfix;
+	@include responsive;
+}

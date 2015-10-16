@@ -1,0 +1,45 @@
+// Media Queries
+@mixin respond-down($media) {
+  // Extra small devices (phones, anything below 320px)
+  @if $media == "phone" {
+    @media only screen and (max-width: $breakpoint-tablet) { @content; }
+  }
+  // Small devices (tablets, anything below 768px)
+  @else if $media == "tablet" {
+    @media only screen and (max-width: $breakpoint-desktop) { @content; }
+  }
+  // Large devices (desktops, anything below 960px)
+  @else if $media == "desktop" {
+    @media only screen and (max-width: $breakpoint-desktop-large) { @content; }
+  }
+  // Extra-Large devices (large desktops, anything above 960px)
+  // No media query - this is the default width
+}
+
+@mixin respond-only($media) {
+  // Extra small devices (phones, anything between 320px and 768px)
+  @if $media == "phone" {
+    @media only screen and (min-width: $breakpoint-phone) and (max-width: $breakpoint-tablet) { @content; }
+  }
+  // Small devices (tablets, anything between 768px and 960px)
+  @else if $media == "tablet" {
+    @media only screen and (min-width: $breakpoint-tablet) and (max-width: $breakpoint-desktop) { @content; }
+  }
+  // Large devices (desktops, anything between 960px and 1200px)
+  @else if $media == "desktop" {
+    @media only screen and (min-width: $breakpoint-desktop) and (max-width: $breakpoint-desktop-large) { @content; }
+  }
+  // Extra-Large devices (desktops, anything above 1200px)
+  @else if $media == "desktop-large" {
+    @media only screen and (min-width: $breakpoint-desktop-large) { @content; }
+  }
+}
+
+// Responsive Wrapper
+@mixin responsive {
+  @extend .center;
+  width: $breakpoint-desktop-large;
+  @include respond-down(desktop) {width: $breakpoint-desktop}
+  @include respond-down(tablet) {width: $breakpoint-tablet}
+  @include respond-down(phone) {width: 100%; padding: 0 2%;}
+}

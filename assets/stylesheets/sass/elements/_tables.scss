@@ -1,0 +1,28 @@
+table {
+  @extend .full-width;
+	@extend .text-left;
+
+	thead {
+		th {
+      background-color: #dddddd;
+			padding: 10px;
+			border-bottom: solid 1px #000000;
+			vertical-align: bottom;
+		}
+	}
+
+	tbody {
+		td {
+			vertical-align: top;
+			padding: 10px;
+		}
+	}
+}
+
+.table--striped {
+  tr:nth-child(even) {
+    td {
+      background-color: #f6f5f2;
+    }
+  }
+}
