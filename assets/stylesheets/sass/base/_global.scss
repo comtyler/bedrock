@@ -1,9 +1,6 @@
 body, html {
 	height: 100%;
-}
-
-*, body {
-	text-rendering:optimizeLegibility;
+	margin: 0;
 }
 
 html {
@@ -33,4 +30,12 @@ img {
 .container {
 	@include clearfix;
 	@include responsive;
+}
+
+.chromeframe {
+	background: #fef9db;
+	text-align: center;
+	color: darken(#fef9db, 60%);
+	border-bottom: solid 1px darken(#fef9db, 20%);
+	padding: 15px 0;
 }
