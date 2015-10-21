@@ -8,7 +8,9 @@ body, html {
 
 html {
 	font-size: 14px;
-	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 	color: #000000;
 	font-family: 'Helvetica', arial, sans-serif;
 	line-height: 0.75;
