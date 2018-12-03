@@ -1,0 +1,26 @@
+{
+  "name": "bedrock",
+  "version": "1.0.0",
+  "description": "A jumping-off point for creating a custom Wordpress theme leveraging modern front-end tooling.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/comtyler/bedrock.git"
+  },
+  "author": "Tyler Jackson - @comtyler",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/comtyler/bedrock/issues"
+  },
+  "homepage": "https://github.com/comtyler/bedrock#readme",
+  "devDependencies": {
+    "gulp": "4.0.0",
+    "gulp-autoprefixer": "6.0.0",
+    "gulp-plumber": "1.2.1",
+    "gulp-sass": "4.0.2",
+    "gulp-sourcemaps": "2.6.4"
+  }
+}

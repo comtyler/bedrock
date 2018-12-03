@@ -1,10 +1,18 @@
 # Bedrock
 
-After years of setting up websites pretty much the same way every time, those ideas and personal best-practices have been moved to this boilerplate of sorts.
+A jumping-off point for creating a custom Wordpress theme leveraging modern front-end tooling.
 
-## Components
+Simply clone this repository to start a new theme:
 
-**[Normalize](https://github.com/necolas/normalize.css/)**
+`git clone https://github.com/comtyler/bedrock.git my-wordpress-theme`
 
-**[Semantic GS](https://github.com/tylertate/semantic.gs)** (modified)
+> Note: This repository does not include the Wordpress install files. You will need to download those from [Wordpress.org](https://wordpress.org/download/) and navigate to the `wp-content/themes` folder before cloning.
+
+## Tools
+
+**Gulp**
+**Yarn**
+**jQuery**
+**Bootstrap**
+
 
