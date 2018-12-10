@@ -34,6 +34,11 @@
       remove_action( 'wp_head', 'index_rel_link' );                           // index link
       remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 );              // previous link
       remove_action( 'wp_head', 'start_post_rel_link', 10, 0 );               // start link
+      remove_action( 'wp_head', 'print_emoji_detection_script', 7 ); 					// Emoji crap
+			remove_action( 'admin_print_scripts', 'print_emoji_detection_script' ); // Emoji crap
+			remove_action( 'wp_print_styles', 'print_emoji_styles' ); 							// Emoji crap
+			remove_action( 'admin_print_styles', 'print_emoji_styles' );						// Emoji crap
+			remove_action( 'wp_head', 'rest_output_link_wp_head', 10 );							// Rest API header link
       remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );   // Links for Adjacent Posts
       remove_action( 'wp_head', 'wp_generator' );                             // WP version
       if (!is_admin()) {
