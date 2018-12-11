@@ -8,6 +8,16 @@
 	add_action( 'customize_register', 'remove_css_customization' );
 
 	/*
+	 * Activate menu functionality
+	 */
+	function register_menu() {
+	  register_nav_menus( array(
+	  	'main' => __( 'Main Menu', 'isi' )
+	  ));
+	}
+	add_action( 'init', 'register_menu' );
+
+	/*
 	 * Enable support for Post Thumbnails on posts and pages.
 	 *
 	 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
