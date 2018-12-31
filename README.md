@@ -9,14 +9,14 @@ Simply clone this repository to start a new theme:
 > Note: This repository does not include the Wordpress install files. You will need to download those from [Wordpress.org](https://wordpress.org/download/) and navigate to the `wp-content/themes` folder before cloning.
 
 ```
-$ git clone https://github.com/comtyler/bedrock.git my-wordpress-theme && rm .git .gitignore
+$ git clone https://github.com/comtyler/bedrock.git my-wordpress-theme
 ```
 
 Once cloned, you will need to remove the Git configuration folder to avoid conflicts with the project's Git configuration. We also need to install all of the NPM dependencies:
 
 ```
 $ cd my-wordpress-theme
-$ rm -rf .git
+$ rm -rf .git .gitignore
 $ npm install
 ```
 
