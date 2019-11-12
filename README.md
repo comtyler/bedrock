@@ -4,9 +4,22 @@ A jumping-off point for creating a custom Wordpress theme leveraging modern fron
 
 ### Install
 
-Simply clone this repository to start a new theme:
 
-> Note: This repository does not include the Wordpress install files. You will need to download those from [Wordpress.org](https://wordpress.org/download/) and navigate to the `wp-content/themes` folder before cloning.
+#### Wordpress
+
+Create a new project directory then download and install Wordpress.
+
+This repository does not include the Wordpress install files. If you are using the WP CLI:
+
+```
+$ wp core download --version=latest --locale=en_US --skip-content
+```
+
+Otherwise, you will need to download Wordpress from [Wordpress.org](https://wordpress.org/download/) and navigate to the `wp-content/themes` directory before cloning.
+
+#### Igniter
+
+Simply clone this repository to start a new theme:
 
 ```
 $ git clone https://github.com/comtyler/bedrock.git my-wordpress-theme

@@ -1,0 +1,21 @@
+html, body {
+	height: 100%;
+}
+
+$text-sizes: (
+	xs: .75rem,
+	sm: .875rem,
+	base: 1rem,
+	lg: 1.25rem,
+	xl: 1.5rem,
+	2xl: 2rem,
+	3xl: 3.5rem,
+	4xl: 4rem,
+	5xl: 5rem
+);
+
+@each $size, $rem in $text-sizes {
+	.text-#{$size} {
+		font-size: #{$rem} !important;
+	}
+}
