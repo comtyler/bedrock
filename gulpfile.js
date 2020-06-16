@@ -27,8 +27,8 @@ function styles() {
     .pipe(sourcemaps.write({includeContent: false}))
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(config.cssPath))
     .pipe(livereload())
+    .pipe(gulp.dest(config.cssPath))
 }
 
 //Compile the scripts
@@ -40,6 +40,7 @@ function scripts() {
       config.jsFiles
     ])
     .pipe(concat('application.js'))
+    .pipe(livereload())
     .pipe(gulp.dest(config.distPath))
 }
 
