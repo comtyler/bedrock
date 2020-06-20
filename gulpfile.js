@@ -46,7 +46,10 @@ function scripts() {
 
 //Set which files to watch
 function watch() {
-  livereload.listen();
+  livereload.listen(35729);
+  gulp.watch('./**/*.php').on('change', function(file) {
+    livereload.changed(file);
+  });
   gulp.watch(config.sassFiles, styles);
   gulp.watch(config.jsFiles, scripts);
 }
