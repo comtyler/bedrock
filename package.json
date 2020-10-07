@@ -14,14 +14,20 @@
   },
   "homepage": "https://github.com/comtyler/bedrock#readme",
   "devDependencies": {
-    "popper.js": "^1.16.1",
-    "jquery": "^3.4.1",
-    "bootstrap": "^4.5.0",
     "gulp": "^4.0.2",
+    "gulp-clean": "^0.4.0",
+    "gulp-clean-css": "^4.3.0",
     "gulp-concat": "2.6.1",
+    "gulp-environments": "^1.0.1",
+    "gulp-hash-filename": "^3.0.0",
     "gulp-livereload": "^4.0.1",
     "gulp-plumber": "1.2.1",
+    "gulp-postcss": "^9.0.0",
+    "gulp-purgecss": "^3.0.0",
     "gulp-sass": "^4.1.0",
-    "gulp-sourcemaps": "^2.6.5"
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-terser": "^1.4.0",
+    "tailwindcss": "^1.8.11",
+    "vue": "^2.6.12"
   }
 }

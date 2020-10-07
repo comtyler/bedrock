@@ -102,19 +102,28 @@
 	remove_filter( 'the_excerpt', 'wpautop' );
 
 	/*
-	 * Set a variable using the CSS Theme version number
+	 * Enqueue our hashed styles and scripts for good cache busting
 	 */
-	$theme = wp_get_theme();
-	define('THEME_VERSION', $theme->Version);
+	function enqueue_hashed_assets() {
+		$js_dir = get_template_directory_uri() . '/assets/scripts/dist';
+		$js_files = glob($js_dir.'/*.js');
+		foreach ($js_files as $file) {
+			$full_name = basename($file);
+			$name = substr(basename($full_name), 0, strpos(basename($full_name), '-'));
 
-	/*
-	 * Adding version number to main style sheet and application js (for cache busting)
-	 */
-	function mb_assets() {
-		wp_enqueue_style('main', get_template_directory_uri().'/style.css', array(), THEME_VERSION, 'all');
-		wp_enqueue_script('application', get_template_directory_uri().'/assets/scripts/dist/application.js', array(), THEME_VERSION, true);
+			wp_enqueue_script( $name, $js_dir . '/' . $full_name, null, null, true );
+		}
+
+		$css_dir = get_template_directory_uri() . '/assets/styles/css';
+		$css_files = glob($css_dir.'/*.css');
+		foreach ($css_files as $file) {
+			$full_name = basename($file);
+			$name = substr(basename($full_name), 0, strpos(basename($full_name), '-'));
+
+			wp_enqueue_style( $name, $css_dir . '/' . $full_name, null, null, true );
+		}
 	}
-	add_action('wp_enqueue_scripts', 'mb_assets'); 
+	add_action('wp_enqueue_scripts', 'enqueue_hashed_assets'); 
 
 	/*
 	 * Cleaning up the wp_head call

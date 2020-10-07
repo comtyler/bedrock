@@ -1,8 +1,8 @@
 /*!
  * Theme Name: FILLMEIN
  * Theme URI: FILLMEIN
- * Author: Cosby Harrison Marketing
- * Author URI: https://www.chcmarketing.com
+ * Author: Tyler Jackson
+ * Author URI: https://tylerjackson.io
  * Description: FILLMEIN
  * Version: 1.0
  * License: GNU General Public License v2 or later
@@ -10,15 +10,25 @@
  * Text Domain: FILLMEIN
  */
 
-@import 'fonts';
-@import 'vars';
-@import '../../../node_modules/bootstrap/scss/bootstrap';
-@import 'global';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-// Elements
+// Custom 'base' styles to be imported between Tailwind 'base' and 'components'
+@layer base {
+	@import 'base/fonts';
+	@import 'base/global';
+}
 
-// Layout
+// Custom 'component' styles to be imported between Tailwind 'components' and 'utilities'
+@layer components {
+	@import 'components/buttons';
+}
 
-// View Specific
+// Custom layout styles
+@import 'layout/header';
+@import 'layout/footer';
 
-// Libraries
+
+// Custom view-specific styles
+@import 'views/home';
