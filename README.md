@@ -55,5 +55,5 @@ $ gulp
 ### Tools
 
 - **Gulp** - A simple build tool for compiling SASS and Javascript dependencies
-- **Bootstrap (popper.js)** - A front-end framework written in SASS and jQuery
-- **jQuery** - A Javascript framework for speeding script development
+- **Vue JS** - A front-end Javascript framework
+- **Tailwind CSS** - A utility-based CSS framework

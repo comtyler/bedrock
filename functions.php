@@ -104,12 +104,13 @@
 	/*
 	 * Enqueue our styles and scripts in a way that busts the client-side cache
 	 */
-	function register_assets() {
-		$js_path = get_template_directory_uri() . '/assets/scripts/dist/application.js';
-		
+	function enqueue_assets() {
+		$js_path = '/assets/scripts/dist/application.js';
+
 		wp_enqueue_style( 'main', get_stylesheet_uri(), array(), filemtime(get_stylesheet_directory()), 'all' );
-		wp_enqueue_script( 'application', $js_path, array(), filemtime($js_path), true );
+		wp_enqueue_script( 'application', get_template_directory_uri() . $js_path, array(), strval(filemtime(get_template_directory() . $js_path)), true );
 	}
+	add_action('wp_enqueue_scripts', 'enqueue_assets');
 
 	/*
 	 * Cleaning up the wp_head call
