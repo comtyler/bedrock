@@ -19,7 +19,7 @@ var config = {
 		scripts: {
 			input: './assets/scripts/src/**/*.js',
 			output: './assets/scripts/dist',
-			vue: './node_modules/vue/dist/vue.js'
+			vue: development() ? './node_modules/vue/dist/vue.js' : './node_modules/vue/dist/vue.min.js'
 		},
 		styles: {
 			input: './assets/styles/**/*.scss',

@@ -29,7 +29,7 @@ Once cloned, you will need to remove the Git configuration folder to avoid confl
 
 ```
 $ cd my-wordpress-theme
-$ find . -name ".git* .git" -delete
+$ rm -rf .git*
 $ npm install
 ```
 
