@@ -3,7 +3,6 @@
 //Require global Gulp plugins
 const gulp = require('gulp'),
 			plumber = require('gulp-plumber'),
-			hash = require('gulp-hash-filename'),
 			livereload = require('gulp-livereload'),
 			sourcemaps = require('gulp-sourcemaps'),
 			environments = require('gulp-environments');
@@ -14,26 +13,18 @@ var development = environments.development,
 
 //Set config variables
 var config = {
-	files: './**/*.php',
-	scripts: {
-		input: './assets/scripts/src/**/*.js',
-		output: './assets/scripts/dist',
-		compiled: './assets/scripts/dist/**/*.js',
-		vue: './node_modules/vue/dist/vue.js'
-	},
-	styles: {
-		input: './assets/styles/sass/**/*.scss',
-		output: './assets/styles/css',
-		compiled: './assets/styles/css/**/*.css'
+	paths: {
+		base: './',
+		files: './**/*.php',
+		scripts: {
+			input: './assets/scripts/src/**/*.js',
+			output: './assets/scripts/dist',
+			vue: './node_modules/vue/dist/vue.js'
+		},
+		styles: {
+			input: './assets/styles/**/*.scss',
+		}
 	}
-}
-
-//Remove existing compiled assets
-function sweep() {
-	const clean = require('gulp-clean');
-
-	return gulp.src([config.scripts.compiled, config.styles.compiled], {read: false})
-		.pipe(clean({force: true}))
 }
 
 //Compile the styles
@@ -43,9 +34,7 @@ function styles() {
 	const cleancss = require ('gulp-clean-css');
 	const sass = require('gulp-sass');
 
-	sweep();
-
-	return gulp.src(config.styles.input)
+	return gulp.src(config.paths.styles.input)
 		.pipe(plumber())
 		.pipe(development(sourcemaps.init()))
 		.pipe(
@@ -58,14 +47,11 @@ function styles() {
       require('tailwindcss'),
       require('autoprefixer')
     ]))
-    .pipe(production(purgecss({ content: [config.files] })))
+    .pipe(production(purgecss({ content: [config.paths.files] })))
     .pipe(production(cleancss({ level: 2 })))
 		.pipe(development(sourcemaps.write()))
 		.pipe(development(livereload()))
-		.pipe(hash({
-			"format": "{name}-{hash:12}{ext}"
-		}))
-		.pipe(gulp.dest(config.styles.output))
+		.pipe(gulp.dest(config.paths.base))
 }
 
 //Compile the scripts
@@ -73,35 +59,26 @@ function scripts() {
 	const terser = require('gulp-terser');
 	const concat = require('gulp-concat');
 
-	sweep();
-
-	return gulp.src([config.scripts.vue, config.scripts.input])
+	return gulp.src([config.paths.scripts.vue, config.paths.scripts.input])
 		.pipe(plumber())
 		.pipe(development(sourcemaps.init()))
-		.pipe(concat('main.js'))
+		.pipe(concat('application.js'))
 		.pipe(production(terser()))
 		.pipe(development(sourcemaps.write()))
 		.pipe(development(livereload()))
-		.pipe(hash({
-			"format": "{name}-{hash:12}{ext}"
-		}))
-		.pipe(gulp.dest(config.scripts.output))
+		.pipe(gulp.dest(config.paths.scripts.output))
 }
 
 //Set which files to watch during development
 function watch() {
 	livereload.listen(35729);
-	gulp.watch(config.files).on('change', function(file) {
+	gulp.watch(config.paths.files).on('change', function(file) {
 		livereload.changed(file);
 	});
-	gulp.watch(config.styles.input, styles);
-	gulp.watch(config.scripts.input, scripts);
+	gulp.watch(config.paths.styles.input, styles);
+	gulp.watch(config.paths.scripts.input, scripts);
 }
 
-//Set our build order
-var build = gulp.parallel(styles, scripts);
-var watch = gulp.parallel(styles, scripts, watch);
-
 //Define our tasks
-gulp.task('build', gulp.series(sweep, build));
-gulp.task('default', gulp.series(sweep, watch));
+gulp.task('build', gulp.parallel(styles, scripts));
+gulp.task('default', gulp.parallel(styles, scripts, watch));

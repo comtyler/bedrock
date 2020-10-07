@@ -102,28 +102,14 @@
 	remove_filter( 'the_excerpt', 'wpautop' );
 
 	/*
-	 * Enqueue our hashed styles and scripts for good cache busting
+	 * Enqueue our styles and scripts in a way that busts the client-side cache
 	 */
-	function enqueue_hashed_assets() {
-		$js_dir = get_template_directory_uri() . '/assets/scripts/dist';
-		$js_files = glob($js_dir.'/*.js');
-		foreach ($js_files as $file) {
-			$full_name = basename($file);
-			$name = substr(basename($full_name), 0, strpos(basename($full_name), '-'));
-
-			wp_enqueue_script( $name, $js_dir . '/' . $full_name, null, null, true );
-		}
-
-		$css_dir = get_template_directory_uri() . '/assets/styles/css';
-		$css_files = glob($css_dir.'/*.css');
-		foreach ($css_files as $file) {
-			$full_name = basename($file);
-			$name = substr(basename($full_name), 0, strpos(basename($full_name), '-'));
-
-			wp_enqueue_style( $name, $css_dir . '/' . $full_name, null, null, true );
-		}
+	function register_assets() {
+		$js_path = get_template_directory_uri() . '/assets/scripts/dist/application.js';
+		
+		wp_enqueue_style( 'main', get_stylesheet_uri(), array(), filemtime(get_stylesheet_directory()), 'all' );
+		wp_enqueue_script( 'application', $js_path, array(), filemtime($js_path), true );
 	}
-	add_action('wp_enqueue_scripts', 'enqueue_hashed_assets'); 
 
 	/*
 	 * Cleaning up the wp_head call
